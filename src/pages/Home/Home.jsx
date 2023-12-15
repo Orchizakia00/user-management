@@ -1,6 +1,6 @@
 
 
-const Dashboard = () => {
+const Home = () => {
     return (
         <div>
             coming soon
@@ -8,4 +8,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default Home;
