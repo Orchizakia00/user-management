@@ -16,7 +16,7 @@ const Navbar = () => {
     }
 
     const navItems = <>
-        <Link to={'/'}><li><a>Home</a></li></Link>
+        <Link to={'/'}><li><a>Dashboard</a></li></Link>
         <Link to={'/add-user'}><li><a>Add User</a></li></Link>
         {
             user ? <li onClick={handleLogout}><a>Logout</a></li> : <Link to={'/login'}><li><a>Login</a></li></Link>

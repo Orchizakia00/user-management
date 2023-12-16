@@ -1,9 +1,9 @@
 import toast from "react-hot-toast";
-import useAxiosPublic from "../../hooks/useAxios";
+import useAxios from "../../hooks/useAxios";
 
 
 const AddUser = () => {
-    const axios = useAxiosPublic();
+    const axios = useAxios();
 
     const handleAdd = e => {
         e.preventDefault();
@@ -24,10 +24,15 @@ const AddUser = () => {
             })
     }
 
+    const handleCancel = (e) => {
+        e.preventDefault();
+        document.getElementById('addUserForm').reset();
+    }
+
     return (
         <div className="bg-base-200 p-20 min-h-screen">
             <h2 className="text-4xl font-bold text-center mb-8">Add New User</h2>
-            <form onSubmit={handleAdd} className="max-w-4xl mx-auto">
+            <form id="addUserForm" onSubmit={handleAdd} className="max-w-4xl mx-auto">
                 <div className="md:flex mb-8">
                     <div className="form-control md:w-1/2">
                         <label className="label">
@@ -62,7 +67,7 @@ const AddUser = () => {
             </form>
             <div className=" max-w-4xl mx-auto">
 
-                <button className="btn btn-block mt-4">Cancel</button>
+                <button onClick={handleCancel} className="btn btn-block mt-4">Cancel</button>
             </div>
         </div>
     );
