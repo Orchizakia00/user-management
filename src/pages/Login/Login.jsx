@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const Login = () => {
 
-    const {signIn} = useAuth();
+    const { signIn } = useAuth();
     const navigate = useNavigate();
 
     const handleLogin = e => {
@@ -40,13 +40,13 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="email" className="input input-bordered" required />
+                            <input type="email" placeholder="email" name="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" className="input input-bordered" required />
+                            <input type="password" placeholder="password" name="password" className="input input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn bg-blue-500 text-white hover:text-black">Login</button>

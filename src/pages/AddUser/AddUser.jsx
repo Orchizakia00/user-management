@@ -1,10 +1,33 @@
+import toast from "react-hot-toast";
+import useAxiosPublic from "../../hooks/useAxios";
 
 
 const AddUser = () => {
+    const axios = useAxiosPublic();
+
+    const handleAdd = e => {
+        e.preventDefault();
+
+        const form = e.target;
+        const user_name = form.user_name.value;
+        const mobile = form.mobile.value;
+        const email = form.email.value;
+
+        const userInfo = { user_name, mobile, email };
+        console.log(userInfo);
+
+        axios.post('/users', userInfo)
+            .then(res => {
+                if (res.data.insertedId) {
+                    toast.success('User Added Successfully!')
+                }
+            })
+    }
+
     return (
         <div className="bg-base-200 p-20 min-h-screen">
             <h2 className="text-4xl font-bold text-center mb-8">Add New User</h2>
-            <form className="max-w-4xl mx-auto">
+            <form onSubmit={handleAdd} className="max-w-4xl mx-auto">
                 <div className="md:flex mb-8">
                     <div className="form-control md:w-1/2">
                         <label className="label">
@@ -34,10 +57,13 @@ const AddUser = () => {
                 </div>
                 <div className="">
                     <input type="submit" value="Add Product" className="btn btn-block bg-gray-700 text-white normal-case hover:text-black" />
-                    <button className="btn btn-block mt-4">Cancel</button>
                 </div>
 
             </form>
+            <div className=" max-w-4xl mx-auto">
+
+                <button className="btn btn-block mt-4">Cancel</button>
+            </div>
         </div>
     );
 };
