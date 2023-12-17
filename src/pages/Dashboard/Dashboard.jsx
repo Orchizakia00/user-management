@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import { FaArrowRight, FaEdit, FaTrashAlt } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
 
@@ -69,9 +70,9 @@ const Dashboard = () => {
                             <p>{user.email}</p>
                             <p><span className="font-bold">Mobile: </span>{user.mobile}</p>
                             <div className="card-actions justify-start mt-6">
-                                <button className="btn  text-black"><FaArrowRight size={20}></FaArrowRight></button>
+                                <Link to={`/user-details/${user.email}`}><button className="btn  text-black"><FaArrowRight size={20}></FaArrowRight></button></Link>
                                 <button className="btn  text-black"><FaEdit size={20}></FaEdit></button>
-                                <button onClick={handleDelete} className="btn  text-black"><FaTrashAlt size={20}></FaTrashAlt></button>
+                                <button onClick={() => handleDelete(user)} className="btn  text-black"><FaTrashAlt size={20}></FaTrashAlt></button>
                             </div>
                         </div>
                     </div>)

@@ -3,11 +3,13 @@ import animation from "../../assets/animations/register-Animation - 170263097205
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import useAxios from "../../hooks/useAxios";
 
 const Register = () => {
 
     const { createUser, updateUserProfile } = useAuth();
     const navigate = useNavigate();
+    const axios = useAxios();
 
     const handleRegister = e => {
         e.preventDefault();
@@ -17,6 +19,8 @@ const Register = () => {
         const password = form.password.value;
         const phone = form.phone.value;
         const gender = form.gender.value;
+        const city = form.city.value;
+        const state = form.state.value;
         // const source = form.source.value;
         const sourceElements = form.querySelectorAll('input[name="source"]:checked');
         const sourceValues = Array.from(sourceElements).map(element => element.value);
@@ -27,7 +31,9 @@ const Register = () => {
             password,
             phone,
             gender,
-            source: sourceValues
+            source: sourceValues,
+            city,
+            state
         }
         console.log(data);
 
@@ -44,17 +50,17 @@ const Register = () => {
                             phone: data.phone,
                             gender: data.gender,
                             source: data.source,
+                            city:data.city,
+                            state: data.state
                         }
-                        console.log(userInfo);
-                        toast.success('User Created Successfully!')
-                        navigate('/');
-                        // axiosPublic.post('/users', userInfo)
-                        //     .then(res => {
-                        //         if (res.data.insertedId) {
-                        //             toast.success('User Created Successfully!')
-                        //             navigate('/')
-                        //         }
-                        //     })
+
+                        axios.post('/logged-users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    toast.success('User Created Successfully!')
+                                    navigate('/')
+                                }
+                            })
 
                     })
             })
@@ -130,6 +136,24 @@ const Register = () => {
                                 <input type="checkbox" name="source" value={'others'} className="checkbox" />
                                 <label htmlFor="">Others</label>
                             </div>
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">City</span>
+                            </label>
+                            <label className="input-group">
+                                <select className="select select-bordered w-full" defaultValue={'Mumbai'} name="city">
+                                    <option>Mumbai</option>
+                                    <option>Pune</option>
+                                    <option>Ahmedabad</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">State</span>
+                            </label>
+                            <input type="text" name="state" placeholder="state" defaultValue={'Gujarat'} className="input input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn bg-blue-500 text-white hover:text-black">Register</button>
