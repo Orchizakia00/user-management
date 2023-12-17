@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useLoaderData } from "react-router-dom";
 
-
 const UserDetails = () => {
 
     const loggedUser = useLoaderData();

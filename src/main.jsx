@@ -15,6 +15,7 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Dashboard from './pages/Dashboard/Dashboard';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import UserDetails from './pages/UserDeatils/UserDetails';
+import EditUser from './pages/EditUser/EditUser';
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
       {
         path: '/add-user',
         element: <PrivateRoute><AddUser></AddUser></PrivateRoute>
+      },
+      {
+        path: '/edit-user/:email',
+        element: <EditUser></EditUser>,
+        loader: ({params}) => fetch(`http://localhost:5000/logged-users/${params.email}`)
       },
       {
         path: '/login',
