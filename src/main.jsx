@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       {
         path: '/user-details/:email',
         element: <UserDetails></UserDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/logged-users/${params.email}`)
+        loader: ({params}) => fetch(`https://user-management-server-kohl.vercel.app/logged-users/${params.email}`)
       },
       {
         path: '/add-user',
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       {
         path: '/edit-user/:email',
         element: <EditUser></EditUser>,
-        loader: ({params}) => fetch(`http://localhost:5000/logged-users/${params.email}`)
+        loader: ({params}) => fetch(`https://user-management-server-kohl.vercel.app/logged-users/${params.email}`)
       },
       {
         path: '/login',
